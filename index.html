@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>קראשית 💜</title>
+
+<style>
+:root {
+  --bg: #f7f2ff;
+  --purple: #7950b8;
+  --deep: #4b2b73;
+  --pink: #ffdaef;
+  --ink: #30223e;
+  --muted: #8a7b98;
+  --line: #eee5fa;
+  --shadow: 0 12px 35px #6c45931a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+  color: var(--ink);
+  background: radial-gradient(circle at 12% 0%, #eee2ff, transparent 30%), var(--bg);
+}
+
+button, input, select, textarea { font: inherit; }
+button { cursor: pointer; border: 0; }
+
+.app { max-width: 1180px; margin: auto; padding: 18px 22px 100px; }
+
+.topbar, .welcome, .section-head, .modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.topbar { margin-bottom: 22px; }
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 25px;
+  font-weight: 900;
+  color: var(--deep);
+}
+
+.logo {
+  width: 44px;
+  height: 44px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #bda0ff, #f4c9ff);
+  box-shadow: var(--shadow);
+  font-size: 24px;
+}
+
+.top-actions { display: flex; gap: 9px; }
+
+.iconbtn {
+  width: 43px;
+  height: 43px;
+  border-radius: 15px;
+  background: white;
+  color: var(--purple);
+  font-size: 22px;
+  box-shadow: var(--shadow);
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 20px;
+}
+
+.maincol, .sidecol { display: flex; flex-direction: column; gap: 18px; }
+
+.card {
+  background: #ffffffdf;
+  border: 1px solid white;
+  border-radius: 27px;
+  padding: 22px;
+  box-shadow: var(--shadow);
+}
+
+.welcome { margin-bottom: 15px; align-items: flex-start; }
+.eyebrow { font-size: 12px; color: var(--purple); font-weight: 800; }
+.welcome h1 { margin: 5px 0; font-size: clamp(23px, 3vw, 31px); }
+.welcome p { margin: 0; color: var(--muted); font-size: 14px; }
+
+.pill {
+  border-radius: 999px;
+  background: #f0e6ff;
+  color: var(--purple);
+  padding: 8px 12px;
+  font-weight: 800;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.relationship {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 10px 0 4px;
+}
+
+.day-circle {
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #f5eaff, #d7c0ff);
+  border: 9px solid white;
+  outline: 2px solid #e9dcff;
+  box-shadow: 0 15px 35px #6e48a526;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.day-circle::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border: 1.5px dashed #b394e8;
+  border-radius: 50%;
+}
+
+.day-number {
+  font-size: 66px;
+  font-weight: 900;
+  line-height: 1;
+  color: var(--deep);
+  z-index: 1;
+}
+
+.day-label { font-weight: 800; color: var(--purple); margin-top: 5px; z-index: 1; }
+.couple-caption { margin-top: 15px; font-weight: 900; font-size: 19px; }
+.couple-sub { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+.avatar {
+  width: 88px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #eadfff;
+  border: 4px solid white;
+  box-shadow: 0 5px 15px #53357520;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.avatar svg { display: block; width: 100%; height: 100%; }
+.avatar.small { width: 66px; border-width: 3px; }
+
+.current-person {
+  margin: 16px auto 0;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border: 1px solid var(--line);
+  padding: 10px 15px;
+  border-radius: 22px;
+  max-width: 100%;
+}
+
+.current-person .avatar { width: 76px; }
+.current-person strong, .friend-row strong { display: block; }
+.current-person small { color: var(--muted); display: block; margin-top: 4px; }
+
+.section-head { margin-bottom: 15px; }
+.section-head h2 { font-size: 18px; margin: 0; }
+
+.textbtn {
+  color: var(--purple);
+  font-weight: 800;
+  background: transparent;
+  padding: 8px;
+}
+
+.people-strip {
+  display: flex;
+  gap: 15px;
+  overflow-x: auto;
+  padding: 4px 2px 10px;
+}
+
+.person-card { min-width: 85px; text-align: center; }
+.person-card .avatar { margin: 0 auto 8px; }
+.person-card strong { display: block; font-size: 13px; }
+.person-card small { color: var(--muted); font-size: 11px; }
+
+.btn {
+  border-radius: 15px;
+  padding: 12px 16px;
+  font-weight: 900;
+  transition: .2s;
+}
+
+.btn.primary {
+  background: linear-gradient(135deg, #8c62cb, #6c45a8);
+  color: white;
+  box-shadow: 0 8px 18px #7b52b32c;
+}
+
+.btn.soft { background: #f1e7ff; color: var(--purple); }
+.btn.pink { background: #ffe5f1; color: #a33c76; }
+.btn:active { transform: scale(.98); }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.stat {
+  background: #faf6ff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 14px;
+  text-align: center;
+}
+
+.stat b { display: block; font-size: 23px; color: var(--purple); }
+.stat span { font-size: 12px; color: var(--muted); }
+
+.feed { display: flex; flex-direction: column; gap: 12px; }
+.feed-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 12px;
+  border-radius: 18px;
+  background: #fcfaff;
+  border: 1px solid #f1e8fb;
+}
+
+.feed-emoji {
+  width: 39px;
+  height: 39px;
+  display: grid;
+  place-items: center;
+  background: #f0e5ff;
+  border-radius: 13px;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.feed-item p { margin: 1px 0 4px; font-size: 13px; line-height: 1.5; }
+.feed-item small { color: var(--muted); font-size: 11px; }
+
+.sassy {
+  background: linear-gradient(135deg, #fff0f8, #f1e6ff);
+  border: 1px solid white;
+  border-radius: 22px;
+  padding: 17px;
+}
+
+.sassy .big { font-size: 27px; }
+.sassy h3 { margin: 5px 0 7px; font-size: 16px; }
+.sassy p { font-size: 13px; color: #75617f; line-height: 1.5; }
+
+.side-title { font-size: 14px; font-weight: 900; margin-bottom: 13px; }
+
+.friend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.friend-row .avatar { width: 48px; }
+.friend-row small { font-size: 11px; color: var(--muted); }
+.friend-row .follow {
+  margin-right: auto;
+  background: #f0e6ff;
+  color: var(--purple);
+  border-radius: 11px;
+  padding: 7px 10px;
+  font-weight: 800;
+  font-size: 11px;
+}
+
+.profile-view { display: none; }
+.profile-view.show { display: block; }
+.home-view.hide { display: none; }
+
+.profile-cover {
+  height: 120px;
+  border-radius: 20px;
+  background: linear-gradient(120deg, #d9c3ff, #ffd8ec, #e6dfff);
+  margin-bottom: -42px;
+}
+
+.profile-top {
+  display: flex;
+  align-items: flex-end;
+  gap: 13px;
+  padding: 0 12px;
+  position: relative;
+}
+
+.profile-top h2 { margin: 0 0 5px; }
+.profile-top p { margin: 0 0 8px; color: var(--muted); font-size: 13px; }
+.profile-bio { line-height: 1.5; color: #665573; font-size: 14px; margin: 15px 0; }
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: #2a173b88;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 14px;
+  z-index: 100;
+}
+
+.modal-backdrop.show { display: flex; }
+
+.modal {
+  background: white;
+  border-radius: 27px;
+  padding: 23px;
+  width: min(700px, 100%);
+  max-height: 94dvh;
+  overflow: auto;
+  box-shadow: 0 20px 80px #1e0f35aa;
+  overscroll-behavior: contain;
+}
+
+.modal-head { margin-bottom: 17px; }
+.modal-head h2 { margin: 0; font-size: 21px; }
+
+.close {
+  background: #f3eaff;
+  color: var(--purple);
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.field { display: flex; flex-direction: column; gap: 7px; margin: 13px 0; }
+.field label { font-size: 13px; font-weight: 800; }
+
+.field input, .field select, .field textarea {
+  width: 100%;
+  border: 1px solid #e8dcf7;
+  background: #fcfaff;
+  border-radius: 13px;
+  padding: 12px;
+  outline: none;
+  color: var(--ink);
+  min-height: 44px;
+}
+
+.avatar-editor {
+  display: grid;
+  grid-template-columns: 165px minmax(0, 1fr);
+  gap: 15px;
+  align-items: start;
+}
+
+.avatar-preview-panel {
+  background: linear-gradient(145deg, #f5eaff, #fce8f5);
+  border: 1px solid #eee1ff;
+  border-radius: 22px;
+  padding: 14px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+.avatar-preview-panel .avatar {
+  width: 100%;
+  max-width: 190px;
+  margin: auto;
+  border-width: 5px;
+}
+
+.avatar-preview-panel strong { display: block; margin-top: 9px; }
+.avatar-preview-panel small { color: var(--muted); font-size: 11px; }
+.editor-controls { min-width: 0; }
+
+/* קטגוריות האווטאר */
+.avatar-categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 7px;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+}
+
+.avatar-category {
+  min-height: 43px;
+  padding: 9px 5px;
+  border-radius: 12px;
+  border: 1px solid #e9def5;
+  background: white;
+  color: var(--purple);
+  font-weight: 800;
+  font-size: 12px;
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.avatar-category.active {
+  background: var(--purple);
+  color: white;
+  border-color: var(--purple);
+}
+
+.avatar-options {
+  background: #fcfaff;
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  padding: 14px;
+  min-height: 145px;
+}
+
+.avatar-options-title { font-weight: 900; margin-bottom: 12px; }
+.choices { display: flex; gap: 9px; flex-wrap: wrap; }
+
+.choice {
+  min-width: 43px;
+  min-height: 43px;
+  border: 2px solid #e9def5;
+  border-radius: 12px;
+  background: white;
+  color: var(--ink);
+  padding: 7px;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+}
+
+.choice.selected {
+  border-color: var(--purple);
+  background: #f0e6ff;
+  box-shadow: 0 0 0 2px #e4d3ff;
+}
+
+.color-choice {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  min-height: 36px;
+  padding: 0;
+  border-radius: 50%;
+  border: 3px solid white;
+  box-shadow: 0 0 0 1px #dfd0ee;
+}
+
+.color-choice.selected { box-shadow: 0 0 0 3px var(--purple); }
+
+.editor-hint { font-size: 11px; color: var(--muted); line-height: 1.5; margin: 8px 0 0; }
+.editor-actions { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 14px; }
+
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(30px);
+  opacity: 0;
+  pointer-events: none;
+  background: #38234f;
+  color: white;
+  padding: 13px 18px;
+  border-radius: 15px;
+  z-index: 200;
+  font-size: 13px;
+  font-weight: 800;
+  transition: .25s;
+  max-width: 90vw;
+  text-align: center;
+}
+
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.bottomnav { display: none; }
+
+@media (max-width: 850px) {
+  .layout { grid-template-columns: 1fr; }
+  .sidecol { display: grid; grid-template-columns: 1fr 1fr; }
+  .app { padding: 14px 14px 95px; }
+  .bottomnav {
+    position: fixed;
+    display: flex;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fffd;
+    border-top: 1px solid #eadff6;
+    padding: 9px 14px calc(9px + env(safe-area-inset-bottom));
+    justify-content: space-around;
+    z-index: 10;
+  }
+  .bottomnav button {
+    background: transparent;
+    color: #89779c;
+    font-size: 11px;
+    font-weight: 800;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+  }
+  .bottomnav button span { font-size: 21px; }
+}
+
+@media (max-width: 520px) {
+  .app { padding: 12px 11px 95px; }
+  .card { padding: 17px; border-radius: 23px; }
+  .sidecol { display: flex; }
+  .welcome .pill { display: none; }
+  .day-circle { width: 200px; height: 200px; }
+  .day-number { font-size: 60px; }
+  .stats { gap: 6px; }
+  .stat { padding: 12px 6px; }
+  .stat b { font-size: 20px; }
+  .brand { font-size: 22px; }
+  .modal-backdrop { padding: 0; align-items: flex-end; }
+  .modal {
+    width: 100%;
+    max-height: 95dvh;
+    border-radius: 25px 25px 0 0;
+    padding: 18px 15px calc(18px + env(safe-area-inset-bottom));
+  }
+  .avatar-editor { grid-template-columns: 1fr; }
+  .avatar-preview-panel {
+    position: relative;
+    display: grid;
+    grid-template-columns: 95px 1fr;
+    gap: 12px;
+    align-items: center;
+    text-align: right;
+  }
+  .avatar-preview-panel .avatar { width: 95px; grid-row: span 2; }
+  .avatar-preview-panel strong { margin: 0; }
+  .avatar-categories { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .avatar-category { font-size: 11px; padding: 9px 3px; }
+}
+</style>
+</head>
+
+<body>
+<div class="app">
+  <header class="topbar">
+    <div class="brand"><div class="logo">💜</div><span>קראשית</span></div>
+    <div class="top-actions">
+      <button class="iconbtn" title="התראות" onclick="openNotifications()">♧</button>
+      <button class="iconbtn" title="הוספה" onclick="openAddPerson()">＋</button>
+      <button class="iconbtn" title="הפרופיל שלי" onclick="showMyProfile()">♡</button>
+    </div>
+  </header>
+
+  <div class="layout">
+    <main class="maincol">
+      <div class="home-view" id="homeView">
+        <section class="card">
+          <div class="welcome">
+            <div>
+              <div class="eyebrow">היוש לירי, ברוכה הבאה לדרמה 💅</div>
+              <h1>מה קורה בלב שלך?</h1>
+              <p>פה שומרים את כל הפרטים. כן, גם את המביכים.</p>
+            </div>
+            <span class="pill">היומן הרומנטי שלך ✨</span>
+          </div>
+
+          <div class="relationship" id="relationship">
+            <div class="day-circle">
+              <div class="day-number" id="daysCount">—</div>
+              <div class="day-label">ימים ביחד</div>
+            </div>
+            <div class="couple-caption" id="coupleCaption">הסיפור שלך מתחיל כאן 💞</div>
+            <div class="couple-sub" id="coupleSub">טפו טפו בלי עין הרע</div>
+            <div id="currentPersonAvatar"></div>
+          </div>
+
+          <div style="display:flex;justify-content:center;gap:9px;margin-top:18px;flex-wrap:wrap">
+            <button class="btn primary" onclick="openAddPerson()">＋ להוסיף מישהו</button>
+            <button class="btn soft" onclick="openStatus()">🫦 עדכון עסיסי</button>
+          </div>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>הקאסט הרומנטי 🎬</h2>
+            <button class="textbtn" onclick="openAddPerson()">לצרף דמות ＋</button>
+          </div>
+          <div class="people-strip" id="peopleStrip"></div>
+          <p class="editor-hint">לחצי על דמות כדי לראות פרטים, או על ✨ כדי לערוך לה את האווטאר.</p>
+        </section>
+
+        <section class="card">
+          <div class="section-head">
+            <h2>מה חדש בעולם הדרמות?</h2>
+            <button class="textbtn" onclick="openNotifications()">כל ההתראות</button>
+          </div>
+          <div class="feed" id="feed">
+            <div class="feed-item"><div class="feed-emoji">🫂</div><div><p><b>עדכון מעדי:</b> נועם חיבק אותה במסדרון. כן, חיבוק. אנחנו חוקרות את זה.</p><small>לפני 12 דקות · התראה לדוגמה</small></div></div>
+            <div class="feed-item"><div class="feed-emoji">👀</div><div><p><b>שירה צפתה בפרופיל שלך.</b> מה היא יודעת שאנחנו לא יודעות?</p><small>לפני שעה · התראה לדוגמה</small></div></div>
+            <div class="feed-item"><div class="feed-emoji">💌</div><div><p><b>מאיה עדכנה סטטוס:</b> "זה לא קראש אם הוא לא יודע שאני קיימת".</p><small>אתמול · התראה לדוגמה</small></div></div>
+          </div>
+        </section>
+      </div>
+
+      <div class="profile-view" id="profileView">
+        <section class="card">
+          <div class="section-head">
+            <button class="textbtn" onclick="backHome()">← חזרה</button>
+            <span class="pill">פרופיל</span>
+          </div>
+          <div class="profile-cover"></div>
+          <div class="profile-top">
+            <div id="profileAvatar"></div>
+            <div><h2 id="profileName"></h2><p id="profileHandle"></p></div>
+          </div>
+          <p class="profile-bio" id="profileBio"></p>
+          <div class="stats">
+            <div class="stat"><b id="profileFollowers">0</b><span>עוקבות</span></div>
+            <div class="stat"><b id="profileFollowing">0</b><span>במעקב</span></div>
+            <div class="stat"><b id="profilePeople">0</b><span>דמויות בעלילה</span></div>
+          </div>
+          <div style="display:flex;gap:9px;margin-top:15px">
+            <button class="btn primary" id="followBtn" onclick="toggleFollow()">＋ לעקוב</button>
+            <button class="btn soft" onclick="openStatus()">לשלוח עדכון 💌</button>
+          </div>
+        </section>
+        <section class="card">
+          <div class="section-head"><h2>העלילה הרומנטית 🫦</h2></div>
+          <div class="people-strip" id="profilePeopleStrip"></div>
+        </section>
+        <section class="card">
+          <div class="section-head"><h2>עדכונים אחרונים</h2></div>
+          <div class="feed" id="profileFeed"></div>
+        </section>
+      </div>
+    </main>
+
+    <aside class="sidecol">
+      <section class="card">
+        <div class="side-title">החברות שלך 👯‍♀️ · הצצה לדרמה</div>
+        <div id="friendsList"></div>
+        <button class="btn soft" style="width:100%;margin-top:12px" onclick="showAllFriends()">לכל החברות ←</button>
+      </section>
+
+      <section class="sassy">
+        <div class="big">💅</div>
+        <h3 id="sassyTitle">רק בודקת…</h3>
+        <p id="sassyText">אם את נכנסת לפרופיל שלו בפעם השישית, זה כבר מחקר אקדמי.</p>
+        <button class="btn pink" style="width:100%" onclick="newSassy()">תני לי כאפה מילולית</button>
+      </section>
+
+      <section class="card">
+        <div class="section-head"><h2>המספרים לא משקרים 📊</h2></div>
+        <div class="stats">
+          <div class="stat"><b id="totalPeople">0</b><span>אנשים</span></div>
+          <div class="stat"><b>12</b><span>קראשים</span></div>
+          <div class="stat"><b id="totalUpdates">3</b><span>עדכונים</span></div>
+        </div>
+        <p style="color:var(--muted);font-size:11px;line-height:1.5;margin:12px 0 0">* נתוני הדגמה. בלי שרת, הנתונים נשמרים בזיכרון של הדף בלבד.</p>
+      </section>
+    </aside>
+  </div>
+</div>
+
+<nav class="bottomnav">
+  <button onclick="backHome()"><span>⌂</span>בית</button>
+  <button onclick="showAllFriends()"><span>♡</span>חברות</button>
+  <button onclick="openAddPerson()"><span>＋</span>הוספה</button>
+  <button onclick="openNotifications()"><span>♧</span>התראות</button>
+  <button onclick="showMyProfile()"><span>☺</span>אני</button>
+</nav>
+
+<div class="modal-backdrop" id="modalBackdrop" onclick="backdropClose(event)">
+  <div class="modal" id="modal"></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script>
+const palette = {
+  skin: ["#f8dfc8","#f4c5a5","#e9ae88","#c98261","#a96749","#70452f"],
+  hair: ["#211c2c","#513b38","#8b5635","#d6a35d","#e8c78d","#b65b42","#7b4d82","#df9bbd","#d7d7df"],
+  shirt: ["#b99aff","#ff9bc9","#94d8cb","#ffd17b","#9bbcff","#f4a7a7","#a8c982","#ffffff"],
+  eyes: ["#30223e","#5d3c2b","#287c70","#5687bc","#8b6b37","#73965a"]
+};
+
+const hairStyles = [
+  {id:"long",label:"ארוך",icon:"💇‍♀️"},
+  {id:"short",label:"קצר",icon:"💇"},
+  {id:"curly",label:"מתולתל",icon:"🌀"},
+  {id:"bob",label:"קארה",icon:"✂️"},
+  {id:"bun",label:"אסוף",icon:"🎀"},
+  {id:"wavy",label:"גלי",icon:"〰️"},
+  {id:"bald",label:"קירח",icon:"🙂"}
+];
+
+const accessories = [
+  {id:"none",label:"בלי",icon:"—"},
+  {id:"glasses",label:"משקפיים",icon:"🤓"},
+  {id:"sunglasses",label:"משקפי שמש",icon:"🕶️"},
+  {id:"cap",label:"כובע",icon:"🧢"},
+  {id:"earring",label:"עגיל",icon:"✨"},
+  {id:"headband",label:"קשת",icon:"🎀"}
+];
+
+const faceShapes = [
+  {id:"oval",label:"אובלי",icon:"🥚"},
+  {id:"round",label:"עגול",icon:"⚪"},
+  {id:"long",label:"מאורך",icon:"🥒"},
+  {id:"square",label:"מרובע",icon:"▣"}
+];
+
+const brows = [
+  {id:"normal",label:"רגילות",icon:"〰️"},
+  {id:"thick",label:"עבות",icon:"〽️"},
+  {id:"arched",label:"קשתיות",icon:"⌒"},
+  {id:"thin",label:"דקות",icon:"﹏"}
+];
+
+const noses = [
+  {id:"small",label:"קטן",icon:"·"},
+  {id:"normal",label:"רגיל",icon:"◡"},
+  {id:"wide",label:"רחב",icon:"▽"}
+];
+
+const mouths = [
+  {id:"smile",label:"חיוך",icon:"☺️"},
+  {id:"smirk",label:"חיוך צדדי",icon:"😏"},
+  {id:"neutral",label:"ניטרלי",icon:"😐"},
+  {id:"open",label:"פה פתוח",icon:"😮"}
+];
+
+const avatarCategories = [
+  {key:"skin",label:"🎨 עור",title:"בחרי גוון עור"},
+  {key:"hairStyle",label:"💇 תסרוקת",title:"בחרי תסרוקת"},
+  {key:"hairColor",label:"🌈 צבע שיער",title:"בחרי צבע שיער"},
+  {key:"faceShape",label:"👤 מבנה פנים",title:"בחרי מבנה פנים"},
+  {key:"eyes",label:"👀 עיניים",title:"בחרי צבע עיניים"},
+  {key:"brows",label:"〰️ גבות",title:"בחרי סגנון גבות"},
+  {key:"nose",label:"👃 אף",title:"בחרי צורת אף"},
+  {key:"mouth",label:"💋 פה",title:"בחרי הבעה"},
+  {key:"shirt",label:"👕 חולצה",title:"בחרי צבע חולצה"},
+  {key:"facialHair",label:"🧔 שיער פנים",title:"בחרי שיער פנים"},
+  {key:"accessory",label:"✨ אביזרים",title:"בחרי אביזר"},
+  {key:"blush",label:"🌸 תוספות",title:"תוספות לפנים"}
+];
+
+function defaultAvatar(seed=0) {
+  return {
+    skin:seed%6,
+    hairColor:(seed+1)%9,
+    shirt:(seed*2)%8,
+    eyes:seed%6,
+    hairStyle:["long","short","curly","bob","bun","wavy"][seed%6],
+    faceShape:["oval","round","long","square"][seed%4],
+    brows:["normal","thick","arched","thin"][seed%4],
+    nose:["small","normal","wide"][seed%3],
+    mouth:["smile","smirk","neutral","open"][seed%4],
+    accessory:"none",
+    facialHair:"none",
+    blush:false
+  };
+}
+
+function normalizeAvatar(person) {
+  person.avatar = {...defaultAvatar(person.id || 0),...(person.avatar || {})};
+  return person.avatar;
+}
+
+let people = [
+  {id:1,name:"עידו",role:"בן זוג נוכחי",status:"בזוגיות",since:"2026-06-12",handle:"ido.lev",bio:"הבן אדם שבגללו אני מחייכת למסך. אל תגלו לו.",events:["התחלתם לצאת 💘","שלח לך שיר ב־23:48. חשוד."]},
+  {id:2,name:"נועם",role:"קראש",status:"קראש פעיל",handle:"noam.n",bio:"הוא אמר היי והלב שלה פתח קבוצת וואטסאפ.",events:["חיבק את עדי במסדרון 🫂"]},
+  {id:3,name:"דניאל",role:"אקס",status:"נגמר בטוב-ish",handle:"daniel.d",bio:"פרק שנסגר, צילומי מסך נשארו.",events:["הפרידה הרשמית"]},
+  {id:4,name:"תום",role:"קראש לשעבר",status:"עבר הלאה כביכול",handle:"tommy",bio:"הוא היה חמוד עד שהוא התחיל לדבר.",events:[]},
+  {id:5,name:"מיה",role:"חברה",status:"חברה קרובה",handle:"maya.m",bio:"שותפה לפשע ולניתוח הודעות.",events:[]},
+  {id:6,name:"שירה",role:"חברה",status:"חברה קרובה",handle:"shira.sh",bio:"תמיד יודעת הכול לפני כולן.",events:[]}
+];
+
+people.forEach(normalizeAvatar);
+
+let friends = [
+  {name:"עדי לוי",handle:"adi.lev",bio:'מלכת ה"אנחנו רק ידידים" 👑',followers:248,following:31,people:4,followed:false,avatar:defaultAvatar(2),peopleIds:[2,3,4],events:[{emoji:"🫂",text:"נועם חיבק אותה במסדרון. אנחנו חוקרות את זה.",time:"לפני 12 דקות"}]},
+  {name:"מאיה כהן",handle:"maya.c",bio:"אם הוא לא מתאמץ, הוא לא בפרק הזה.",followers:512,following:48,people:6,followed:true,avatar:defaultAvatar(4),peopleIds:[4,2],events:[{emoji:"💌",text:"עדכנה סטטוס: זה לא קראש אם הוא לא יודע שאני קיימת.",time:"אתמול"}]},
+  {name:"שירה בר",handle:"shira.sh",bio:'בלשית פרטית לענייני "מה הוא התכוון".',followers:187,following:22,people:3,followed:false,avatar:defaultAvatar(3),peopleIds:[3,4],events:[{emoji:"👀",text:"צפתה בפרופיל שלך. שוב.",time:"לפני שעתיים"}]}
+];
+
+let currentProfile = null;
+let draftAvatar = defaultAvatar();
+let activeAvatarCategory = "hairStyle";
+let avatarEditorSave = null;
+let updateCount = 3;
+
+const $ = id => document.getElementById(id);
+
+function esc(value) {
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[char]);
+}
+
+function avatarSVG(input={}) {
+  const a = {...defaultAvatar(),...input};
+  const skin = palette.skin[a.skin] || palette.skin[0];
+  const hair = palette.hair[a.hairColor] || palette.hair[0];
+  const shirt = palette.shirt[a.shirt] || palette.shirt[0];
+  const eye = palette.eyes[a.eyes] || palette.eyes[0];
+
+  let face = "M31 25 Q50 13 69 25 Q75 40 68 57 Q61 72 50 74 Q39 72 32 57 Q25 40 31 25Z";
+  if(a.faceShape==="round") face="M28 42 Q25 19 50 20 Q75 19 72 42 Q70 69 50 73 Q30 69 28 42Z";
+  if(a.faceShape==="long") face="M34 23 Q50 15 66 23 Q72 44 65 62 Q59 75 50 77 Q41 75 35 62 Q28 44 34 23Z";
+  if(a.faceShape==="square") face="M30 25 Q50 16 70 25 L68 54 Q62 72 50 74 Q38 72 32 54Z";
+
+  let hairBack = "";
+  if(a.hairStyle==="long") hairBack=`<path d="M25 39 Q19 9 50 8 Q82 8 76 42 L74 73 L63 78 L64 42 L35 42 L36 78 L25 72Z" fill="${hair}"/>`;
+  if(a.hairStyle==="short") hairBack=`<path d="M26 40 Q18 8 50 8 Q81 8 74 41 L67 52 L33 52Z" fill="${hair}"/>`;
+  if(a.hairStyle==="curly") hairBack=`<g fill="${hair}"><circle cx="31" cy="25" r="13"/><circle cx="44" cy="15" r="14"/><circle cx="59" cy="15" r="14"/><circle cx="70" cy="28" r="13"/><circle cx="28" cy="41" r="9"/><circle cx="72" cy="43" r="9"/></g>`;
+  if(a.hairStyle==="bob") hairBack=`<path d="M25 42 Q18 8 50 8 Q82 8 75 42 L72 65 Q64 72 65 45 L35 45 Q35 65 28 65Z" fill="${hair}"/>`;
+  if(a.hairStyle==="bun") hairBack=`<path d="M26 40 Q18 10 50 12 Q82 10 74 41 L68 53 L32 53Z" fill="${hair}"/><circle cx="50" cy="10" r="12" fill="${hair}"/>`;
+  if(a.hairStyle==="wavy") hairBack=`<path d="M25 40 Q18 8 50 8 Q82 8 75 40 Q82 49 72 57 Q80 66 68 74 L65 43 L35 43 L32 74 Q20 66 28 57 Q18 49 25 40Z" fill="${hair}"/>`;
+
+  let topHair = "";
+  if(a.hairStyle!=="bald") {
+    topHair=`<path d="M27 37 Q24 12 50 12 Q77 12 73 38 Q62 27 52 25 Q40 32 27 37Z" fill="${hair}"/>`;
+    if(a.hairStyle==="curly") topHair=`<path d="M27 37 Q20 11 39 15 Q48 1 59 14 Q78 9 73 38 Q60 26 52 25 Q40 32 27 37Z" fill="${hair}"/>`;
+  }
+
+  const browSize = a.brows==="thick" ? 5 : a.brows==="thin" ? 1.8 : 3;
+  const browPath = a.brows==="arched"
+    ? "M34 34 Q41 27 45 34 M55 34 Q62 27 67 34"
+    : `M34 34 Q40 ${34-browSize} 46 34 M54 34 Q60 ${34-browSize} 66 34`;
+
+  let nose = `<path d="M50 39 L49 49 Q50 52 53 50" stroke="#a56c5a" stroke-width="1.6" fill="none" stroke-linecap="round"/>`;
+  if(a.nose==="small") nose=`<path d="M50 40 L48 49 Q50 51 52 49" stroke="#a56c5a" stroke-width="1.5" fill="none" stroke-linecap="round"/>`;
+  if(a.nose==="wide") nose=`<path d="M50 39 L46 50 Q50 54 54 50" stroke="#a56c5a" stroke-width="2" fill="none" stroke-linecap="round"/>`;
+
+  let mouth = `<path d="M42 59 Q50 68 58 59" stroke="#9e4f56" stroke-width="2.5" fill="none" stroke-linecap="round"/>`;
+  if(a.mouth==="neutral") mouth=`<path d="M43 61 L57 61" stroke="#9e4f56" stroke-width="2" stroke-linecap="round"/>`;
+  if(a.mouth==="smirk") mouth=`<path d="M43 60 Q52 65 58 58" stroke="#9e4f56" stroke-width="2.3" fill="none" stroke-linecap="round"/>`;
+  if(a.mouth==="open") mouth=`<ellipse cx="50" cy="61" rx="5" ry="6" fill="#a94e65"/>`;
+
+  let accessory = "";
+  if(a.accessory==="glasses") accessory=`<g fill="none" stroke="#38264b" stroke-width="2.5"><rect x="29" y="35" width="17" height="13" rx="5"/><rect x="54" y="35" width="17" height="13" rx="5"/><path d="M46 39 L54 39 M28 38 L24 36 M71 38 L76 36"/></g>`;
+  if(a.accessory==="sunglasses") accessory=`<g fill="#2c2438" stroke="#2c2438" stroke-width="2"><rect x="29" y="35" width="17" height="13" rx="4"/><rect x="54" y="35" width="17" height="13" rx="4"/><path d="M46 39 L54 39 M28 38 L24 36 M71 38 L76 36"/></g>`;
+  if(a.accessory==="cap") accessory=`<path d="M24 26 Q50 0 76 26 L81 32 Q51 37 22 32Z" fill="${hair}"/>`;
+  if(a.accessory==="headband") accessory=`<path d="M27 27 Q50 2 73 27" fill="none" stroke="#ff82bb" stroke-width="5"/>`;
+  if(a.accessory==="earring") accessory=`<circle cx="28" cy="52" r="3.5" fill="#ffd56a"/><circle cx="72" cy="52" r="3.5" fill="#ffd56a"/>`;
+
+  let facial = "";
+  if(a.facialHair==="stubble") facial=`<path d="M36 57 Q50 75 64 57 L61 67 Q50 78 39 67Z" fill="${hair}" opacity=".45"/>`;
+  if(a.facialHair==="beard") facial=`<path d="M31 50 Q31 69 50 77 Q69 69 69 50 L63 66 Q50 75 37 66Z" fill="${hair}"/>`;
+  if(a.facialHair==="mustache") facial=`<path d="M40 54 Q45 50 50 55 Q55 50 60 54 Q57 61 50 58 Q43 61 40 54Z" fill="${hair}"/>`;
+
+  return `<svg viewBox="0 0 100 100" role="img" aria-label="איור אווטאר">
+    <defs><clipPath id="portraitClip"><circle cx="50" cy="50" r="49"/></clipPath></defs>
+    <g clip-path="url(#portraitClip)">
+      <rect width="100" height="100" fill="#eadfff"/>
+      <circle cx="20" cy="20" r="22" fill="#fff" opacity=".25"/>
+      <path d="M13 105 Q16 77 37 74 L63 74 Q84 77 87 105Z" fill="${shirt}"/>
+      ${hairBack}
+      <path d="M41 62 L41 79 Q50 87 59 79 L59 62Z" fill="${skin}"/>
+      <path d="${face}" fill="${skin}"/>
+      <path d="${browPath}" stroke="${hair}" stroke-width="${browSize}" fill="none" stroke-linecap="round"/>
+      <ellipse cx="40" cy="42" rx="3.5" ry="4" fill="${eye}"/>
+      <ellipse cx="60" cy="42" rx="3.5" ry="4" fill="${eye}"/>
+      <circle cx="41" cy="41" r="1.2" fill="#fff"/>
+      <circle cx="61" cy="41" r="1.2" fill="#fff"/>
+      ${nose}
+      ${a.blush ? '<ellipse cx="35" cy="53" rx="6" ry="3" fill="#f28ba5" opacity=".5"/><ellipse cx="65" cy="53" rx="6" ry="3" fill="#f28ba5" opacity=".5"/>' : ""}
+      ${facial}${mouth}${topHair}${accessory}
+    </g>
+  </svg>`;
+}
+
+function avatarHTML(person, small=false) {
+  return `<div class="avatar ${small?"small":""}">${avatarSVG(person.avatar || defaultAvatar())}</div>`;
+}
+
+function render() {
+  $("peopleStrip").innerHTML = people.map(person => `
+    <div class="person-card">
+      <button class="textbtn" onclick="selectPerson(${person.id})">
+        ${avatarHTML(person,true)}
+        <strong>${esc(person.name)}</strong>
+        <small>${esc(person.role)}</small>
+      </button>
+      <button class="textbtn" onclick="editAvatar(${person.id})">✨ עיצוב</button>
+    </div>
+  `).join("");
+
+  $("friendsList").innerHTML = friends.map((friend,index) => `
+    <div class="friend-row">
+      ${avatarHTML(friend,true)}
+      <div><strong>${esc(friend.name)}</strong><small>@${esc(friend.handle)}</small></div>
+      <button class="follow" onclick="openFriend(${index})">לפרופיל</button>
+    </div>
+  `).join("");
+
+  $("totalPeople").textContent = people.length;
+  $("totalUpdates").textContent = updateCount;
+  updateDays();
+}
+
+function selectPerson(id) {
+  const person = people.find(item => item.id === id);
+  if(!person) return;
+
+  $("currentPersonAvatar").innerHTML = `
+    <button class="current-person" onclick="editAvatar(${person.id})">
+      ${avatarHTML(person)}
+      <span><strong>${esc(person.name)}</strong><small>${esc(person.role)} · לחצי לעריכת האווטאר ✨</small></span>
+    </button>`;
+
+  if(person.role === "בן זוג נוכחי" && person.since) {
+    const days = Math.max(0, Math.floor((new Date() - new Date(person.since+"T00:00:00")) / 86400000));
+    $("daysCount").textContent = days;
+    $("coupleCaption").textContent = `את ו${person.name} 💞`;
+  } else {
+    toast(`${person.name}: ${person.role}`);
+  }
+}
+
+function updateDays() {
+  const person = people.find(p => p.role === "בן זוג נוכחי" && p.since);
+  if(!person) {
+    $("daysCount").textContent = "—";
+    $("relationship").querySelector(".day-label").textContent = "סטטוס: פנויה";
+    $("coupleCaption").textContent = "נו, אין לך אף אחד? 😭";
+    $("coupleSub").textContent = "לא נורא, לפחות אין מי שישאיר אותך על נקרא.";
+    $("currentPersonAvatar").innerHTML = "";
+    return;
+  }
+
+  const days = Math.max(0, Math.floor((new Date() - new Date(person.since+"T00:00:00")) / 86400000));
+  $("daysCount").textContent = days;
+  $("relationship").querySelector(".day-label").textContent = "ימים ביחד";
+  $("coupleCaption").textContent = `את ו${person.name} 💞`;
+  $("coupleSub").textContent = `מאז ${new Date(person.since+"T00:00:00").toLocaleDateString("he-IL")} · טפו טפו בלי עין הרע`;
+  $("currentPersonAvatar").innerHTML = `
+    <button class="current-person" onclick="editAvatar(${person.id})">
+      ${avatarHTML(person)}
+      <span><strong>${esc(person.name)}</strong><small>לחצי כאן כדי לעצב את האווטאר ✨</small></span>
+    </button>`;
+}
+
+function showProfile(friend) {
+  currentProfile = friend;
+  $("homeView").classList.add("hide");
+  $("profileView").classList.add("show");
+
+  $("profileName").textContent = friend.name;
+  $("profileHandle").textContent = "@" + friend.handle;
+  $("profileBio").textContent = friend.bio || "";
+  $("profileFollowers").textContent = friend.followers || 0;
+  $("profileFollowing").textContent = friend.following || 0;
+  $("profilePeople").textContent = friend.people || (friend.peopleIds || []).length;
+  $("profileAvatar").innerHTML = avatarHTML(friend);
+  $("followBtn").textContent = friend.followed ? "✓ במעקב" : "＋ לעקוב";
+
+  $("profilePeopleStrip").innerHTML = (friend.peopleIds || []).map(id => {
+    const person = people.find(p => p.id === id);
+    if(!person) return "";
+    return `<button class="textbtn" onclick="selectPerson(${person.id});backHome()">${avatarHTML(person,true)}<span>${esc(person.name)}</span></button>`;
+  }).join("");
+
+  $("profileFeed").innerHTML = (friend.events || []).map(event => {
+    if(typeof event === "string") return `<div class="feed-item"><div class="feed-emoji">💌</div><div><p>${esc(event)}</p></div></div>`;
+    return `<div class="feed-item"><div class="feed-emoji">${event.emoji || "💌"}</div><div><p>${esc(event.text)}</p><small>${esc(event.time || "לא מזמן")}</small></div></div>`;
+  }).join("");
+}
+
+function openFriend(index) { showProfile(friends[index]); }
+
+function showMyProfile() {
+  showProfile({
+    name:"לירי רוז",
+    handle:"liri.rose",
+    bio:"מנהלת הדרמות הראשית 💜 | פה בשביל החברות, נשארת בשביל הרכילות.",
+    followers:128,
+    following:36,
+    people:people.length,
+    followed:true,
+    avatar:defaultAvatar(),
+    peopleIds:people.map(p=>p.id),
+    events:[{emoji:"💜",text:"הצטרפת לקראשית. בהצלחה לשפיות שלך.",time:"הרגע"}]
+  });
+}
+
+function showAllFriends() {
+  showProfile({
+    name:"החברות שלך 👯‍♀️",
+    handle:"your.girls",
+    bio:"החברות שלך, הסודות שלהן, והודעות שצריך לקרוא יחד.",
+    followers:friends.length,
+    following:friends.length,
+    people:people.length,
+    followed:true,
+    avatar:defaultAvatar(3),
+    peopleIds:people.map(p=>p.id),
+    events:friends.map(friend=>({emoji:"💌",text:`${friend.name}: ${friend.bio}`,time:"פעילה בקראשית"}))
+  });
+}
+
+function backHome() {
+  $("profileView").classList.remove("show");
+  $("homeView").classList.remove("hide");
+}
+
+function toggleFollow() {
+  if(!currentProfile) return;
+  currentProfile.followed = !currentProfile.followed;
+  $("followBtn").textContent = currentProfile.followed ? "✓ במעקב" : "＋ לעקוב";
+  toast(currentProfile.followed ? `עכשיו את במעקב אחרי ${currentProfile.name}.` : `הפסקת לעקוב אחרי ${currentProfile.name}.`);
+}
+
+function openModal(content) {
+  $("modal").innerHTML = content;
+  $("modalBackdrop").classList.add("show");
+  document.body.style.overflow = "hidden";
+}
+
+function closeModal() {
+  $("modalBackdrop").classList.remove("show");
+  document.body.style.overflow = "";
+}
+
+function backdropClose(event) {
+  if(event.target === $("modalBackdrop")) closeModal();
+}
+
+function openAddPerson() {
+  draftAvatar = defaultAvatar(people.length);
+  openPersonForm();
+}
+
+function openPersonForm() {
+  openModal(`
+    <div class="modal-head"><h2>דמות חדשה נכנסת לעלילה 💘</h2><button class="close" onclick="closeModal()">×</button></div>
+    <form onsubmit="savePerson(event)">
+      <div class="field"><label>איך קוראים לו/לה?</label><input id="newName" required placeholder="שם או כינוי מסתורי..."></div>
+      <div class="field"><label>מה הסטטוס?</label>
+        <select id="newRole">
+          <option>קראש</option><option>בן זוג נוכחי</option><option>אקס</option>
+          <option>קראש לשעבר</option><option>ידיד</option><option>חברה</option>
+        </select>
+      </div>
+      <div class="field"><label>תאריך התחלה (אם רלוונטי)</label><input id="newDate" type="date"></div>
+      <div class="field"><label>הערה לעתיד (או לבית הדין)</label><input id="newBio" placeholder="למשל: עשה קשר עין ל־0.7 שניות"></div>
+      <div class="editor-actions">
+        <button class="btn soft" type="button" onclick="openDraftEditor()">🎨 לעצב עכשיו</button>
+        <button class="btn primary" style="flex:1" type="submit">לשמור את הדמות ✨</button>
+      </div>
+    </form>
+  `);
+}
+
+function openDraftEditor() {
+  const name = $("newName")?.value || "הקראש המסתורי";
+  openAvatarEditor(draftAvatar,name,()=>{
+    draftAvatar = {...draftAvatar};
+    openPersonForm();
+    if($("newName")) $("newName").value = name === "הקראש המסתורי" ? "" : name;
+  });
+}
+
+function savePerson(event) {
+  event.preventDefault();
+
+  const name = $("newName").value.trim();
+  const role = $("newRole").value;
+  const date = $("newDate").value;
+  const bio = $("newBio").value;
+
+  people.push({
+    id:Date.now(),
+    name,
+    role,
+    status:role,
+    since:date,
+    avatar:{...draftAvatar},
+    handle:name.toLowerCase().replace(/\s+/g,"."),
+    bio:bio || "העלילה עוד נכתבת…",
+    events:[]
+  });
+
+  render();
+  closeModal();
+  toast(`${name} נוספ/ה לקאסט. תתחילי להתנהג רגיל. 💅`);
+}
+
+function editAvatar(id) {
+  const person = people.find(p => p.id === id);
+  if(!person) return;
+
+  normalizeAvatar(person);
+
+  openAvatarEditor(person.avatar,person.name,()=>{
+    person.avatar = {...draftAvatar};
+    render();
+    closeModal();
+    toast(`האווטאר של ${person.name} עודכן 👀`);
+  });
+}
+
+/* עורך האווטאר: כל הקטגוריות והאפשרויות */
+function openAvatarEditor(source,name,onSave) {
+  draftAvatar = {...defaultAvatar(),...source};
+  avatarEditorSave = onSave;
+  activeAvatarCategory = "hairStyle";
+
+  openModal(`
+    <div class="modal-head">
+      <div>
+        <h2>מעבדת הקראש 🎨</h2>
+        <div class="editor-hint">כל פרט קטן משנה. אנחנו לא שופטות.</div>
+      </div>
+      <button class="close" onclick="closeModal()">×</button>
+    </div>
+
+    <div class="avatar-editor">
+      <div class="avatar-preview-panel">
+        <div class="avatar" id="bigAvatarPreview">${avatarSVG(draftAvatar)}</div>
+        <strong id="previewName">${esc(name)}</strong>
+        <small>תצוגה מקדימה חיה</small>
+      </div>
+
+      <div class="editor-controls">
+        <div class="avatar-categories" id="avatarCategories"></div>
+        <div class="avatar-options" id="avatarOptions"></div>
+        <p class="editor-hint">בחרי קטגוריה, נסי אפשרויות שונות וראי את התוצאה מיד.</p>
+      </div>
+    </div>
+
+    <div class="editor-actions">
+      <button class="btn soft" onclick="resetDraftAvatar()">↺ להתחיל מחדש</button>
+      <button class="btn primary" style="flex:1" id="saveAvatarBtn">לשמור את האווטאר 💜</button>
+    </div>
+  `);
+
+  renderAvatarCategories();
+  renderAvatarOptions();
+
+  $("saveAvatarBtn").addEventListener("click",()=>{
+    if(avatarEditorSave) avatarEditorSave();
+  });
+}
+
+/* תיקון הלחיצות: האירועים נרשמים מחדש אחרי כל רינדור */
+function renderAvatarCategories() {
+  const container = $("avatarCategories");
+  if(!container) return;
+
+  container.innerHTML = avatarCategories.map(category=>`
+    <button
+      type="button"
+      class="avatar-category ${activeAvatarCategory===category.key?"active":""}"
+      data-category="${category.key}">
+      ${category.label}
+    </button>
+  `).join("");
+
+  container.querySelectorAll(".avatar-category").forEach(button=>{
+    button.addEventListener("click",()=>{
+      activeAvatarCategory = button.dataset.category;
+      renderAvatarCategories();
+      renderAvatarOptions();
+    });
+  });
+}
+
+function getAvatarOptions(key) {
+  if(key==="skin") return palette.skin.map((color,index)=>({value:index,color,label:"גוון עור"}));
+  if(key==="hairColor") return palette.hair.map((color,index)=>({value:index,color,label:"צבע שיער"}));
+  if(key==="shirt") return palette.shirt.map((color,index)=>({value:index,color,label:"צבע חולצה"}));
+  if(key==="eyes") return palette.eyes.map((color,index)=>({value:index,color,label:"צבע עיניים"}));
+  if(key==="hairStyle") return hairStyles.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="faceShape") return faceShapes.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="brows") return brows.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="nose") return noses.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="mouth") return mouths.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="facialHair") return [
+    {value:"none",icon:"—",label:"בלי"},
+    {value:"stubble",icon:"🧔🏻",label:"זיפים"},
+    {value:"mustache",icon:"🥸",label:"שפם"},
+    {value:"beard",icon:"🧔",label:"זקן"}
+  ];
+  if(key==="accessory") return accessories.map(item=>({value:item.id,icon:item.icon,label:item.label}));
+  if(key==="blush") return [
+    {value:false,icon:"🙂",label:"בלי סומק"},
+    {value:true,icon:"🌸",label:"עם סומק"}
+  ];
+  return [];
+}
+
+function renderAvatarOptions() {
+  const container = $("avatarOptions");
+  if(!container) return;
+
+  const category = avatarCategories.find(item=>item.key===activeAvatarCategory);
+  if(!category) return;
+
+  const options = getAvatarOptions(activeAvatarCategory);
+
+  container.innerHTML = `
+    <div class="avatar-options-title">${category.title}</div>
+    <div class="choices">
+      ${options.map(option=>{
+        const currentValue = activeAvatarCategory==="blush"
+          ? Boolean(draftAvatar.blush)
+          : draftAvatar[activeAvatarCategory];
+        const selected = currentValue === option.value;
+
+        if(option.color) {
+          return `
+            <button
+              type="button"
+              title="${option.label}"
+              aria-label="${option.label}"
+              class="choice color-choice ${selected?"selected":""}"
+              style="background:${option.color}"
+              data-value="${option.value}">
+            </button>
+          `;
+        }
+
+        return `
+          <button
+            type="button"
+            title="${option.label}"
+            aria-label="${option.label}"
+            class="choice ${selected?"selected":""}"
+            data-value="${String(option.value)}">
+            ${option.icon}
+          </button>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  container.querySelectorAll(".choice").forEach((button,index)=>{
+    button.addEventListener("click",()=>{
+      chooseAvatarOption(activeAvatarCategory,options[index].value);
+    });
+  });
+}
+
+function chooseAvatarOption(key,value) {
+  if(key==="blush") draftAvatar.blush = value;
+  else draftAvatar[key] = value;
+
+  $("bigAvatarPreview").innerHTML = avatarSVG(draftAvatar);
+  renderAvatarOptions();
+}
+
+function resetDraftAvatar() {
+  draftAvatar = defaultAvatar();
+  $("bigAvatarPreview").innerHTML = avatarSVG(draftAvatar);
+  renderAvatarCategories();
+  renderAvatarOptions();
+}
+
+function openStatus() {
+  openModal(`
+    <div class="modal-head"><h2>דיווח עסיסי 🫦</h2><button class="close" onclick="closeModal()">×</button></div>
+    <form onsubmit="saveStatus(event)">
+      <div class="field"><label>על מי מדובר?</label>
+        <select id="statusPerson">${people.map(p=>`<option value="${p.id}">${esc(p.name)} · ${esc(p.role)}</option>`).join("")}</select>
+      </div>
+      <div class="field"><label>מה קרה, נשמה?</label>
+        <select id="statusType">
+          <option value="hug">הוא/היא חיבק/ה אותי 🫂</option>
+          <option value="text">שלח/ה הודעה 💬</option>
+          <option value="like">עשה/תה לייק 👀</option>
+          <option value="date">יצאנו לדייט 💘</option>
+          <option value="kiss">הייתה נשיקה 💋</option>
+          <option value="other">דרמה אחרת 🍿</option>
+        </select>
+      </div>
+      <div class="field"><label>פרטים נוספים (לא חובה)</label><input id="statusDetails" placeholder="איפה, מתי, כמה זמן החיבוק..."></div>
+      <button class="btn primary" style="width:100%">לפרסם את הדרמה 📣</button>
+    </form>
+  `);
+}
+
+function saveStatus(event) {
+  event.preventDefault();
+
+  const person = people.find(p=>p.id===Number($("statusPerson").value));
+  const type = $("statusType").value;
+  const detail = $("statusDetails").value.trim();
+  if(!person) return;
+
+  const data = {
+    hug:["🫂","חיבק/ה"],
+    text:["💬","שלח/ה הודעה"],
+    like:["👀","עשה/תה לייק"],
+    date:["💘","יצאו לדייט"],
+    kiss:["💋","הייתה נשיקה"],
+    other:["🍿","עדכון דרמטי"]
+  }[type];
+
+  const message = `${person.name} — ${data[1]}${detail?" · "+detail:""}.`;
+  $("feed").insertAdjacentHTML("afterbegin",`
+    <div class="feed-item"><div class="feed-emoji">${data[0]}</div><div><p><b>עדכון חדש:</b> ${esc(message)}</p><small>הרגע · נשמר בדף הזה</small></div></div>
+  `);
+
+  person.events.unshift(message);
+  updateCount++;
+  $("totalUpdates").textContent = updateCount;
+  closeModal();
+  toast("פורסם! שמרנו את הדרמה 📣");
+}
+
+function openNotifications() {
+  openModal(`
+    <div class="modal-head"><h2>ההתראות שלך 🔔</h2><button class="close" onclick="closeModal()">×</button></div>
+    <div class="feed">
+      <div class="feed-item"><div class="feed-emoji">🫂</div><div><p><b>עדי עדכנה:</b> נועם חיבק אותה. כן, יש לנו שאלות.</p><small>לפני 12 דקות</small></div></div>
+      <div class="feed-item"><div class="feed-emoji">👀</div><div><p><b>שירה צפתה בפרופיל שלך.</b> אולי תסגרי את הסטורי ותנשמי?</p><small>לפני שעה</small></div></div>
+      <div class="feed-item"><div class="feed-emoji">💜</div><div><p><b>תזכורת מהמערכת:</b> אל תנתחי כל הודעה יותר מדי.</p><small>אתמול</small></div></div>
+    </div>
+    <p class="editor-hint">אלה התראות הדגמה בלבד.</p>
+  `);
+}
+
+const sassies = [
+  ["רגע של כנות 🪞","אם הוא היה רוצה, אולי הוא היה. ואם הוא לא רוצה, לפחות יש לך אותנו."],
+  ["מחקר אקדמי 🔬","נכנסת לפרופיל שלו בפעם השישית? זו כבר עבודת סמינר."],
+  ["התעוררי נסיכה 👑","הוא כתב חח ואת כבר בוחרת שמות לילדים. מים. עכשיו."],
+  ["עדכון חשוב 📢","לא כל מבט הוא סימן. לפעמים פשוט יש לך משהו על החולצה."],
+  ["הודעה מהיקום 🌙","תני לו להתגעגע. לא צריך להעלות סטורי כל ארבע דקות."]
+];
+
+function newSassy() {
+  const item = sassies[Math.floor(Math.random()*sassies.length)];
+  $("sassyTitle").textContent = item[0];
+  $("sassyText").textContent = item[1];
+}
+
+function toast(message) {
+  const element = $("toast");
+  element.textContent = message;
+  element.classList.add("show");
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(()=>element.classList.remove("show"),2800);
+}
+
+render();
+</script>
+</body>
+</html>
